@@ -1,0 +1,35 @@
+﻿@page
+@model ListModel
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Restuarants List</h1>
+<table class="table table-hover table-striped table-sm">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Cuisine</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var restaurant in Model.Restaurants)
+        {
+        <tr>
+            <td>
+                @restaurant.Name
+            </td>
+            <td>
+                @restaurant.Location
+            </td>
+            <td>
+                @restaurant.Cuisine
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@Model.Message
+
