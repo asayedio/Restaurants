@@ -6,6 +6,19 @@
 }
 
 <h1>Restuarants List</h1>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" asp-for="SearchTerm" class="form-control" value="" />
+            <div class="input-group-append">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>
 <table class="table table-hover table-striped table-sm">
     <thead>
         <tr>
@@ -26,6 +39,9 @@
             </td>
             <td>
                 @restaurant.Cuisine
+            </td>
+            <td>
+                <a class="btn btn-default" asp-page="./Detail" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-info"></i></a>
             </td>
         </tr>
         }
