@@ -11,6 +11,7 @@ namespace Restaurant.Data
         IEnumerable<RestaurantClass> GetRestaurantsByName(string name);
         RestaurantClass GetRestaurantById(int id);
         RestaurantClass UpdateRestaurant(RestaurantClass updatedRestaurant);
+        RestaurantClass AddRestaurant(RestaurantClass newRestaurant);
         int Commit();
     }
     public class InMomoryRestaurantData : IRestaurantData
@@ -51,6 +52,12 @@ namespace Restaurant.Data
                 restaurant.Cuisine = updatedRestaurant.Cuisine;
             }
             return restaurant;
+        }
+        public RestaurantClass AddRestaurant(RestaurantClass newRestaurant)
+        {
+            newRestaurant.ID = restaurants.Max(r => r.ID) + 1;
+            restaurants.Add(newRestaurant);
+            return newRestaurant;
         }
         public int Commit()
         {

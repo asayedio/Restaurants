@@ -13,6 +13,8 @@ namespace Restaurants.Pages.Restaurants
     {
         private readonly IRestaurantData restaurantData;
         public RestaurantClass Restaurant { get; set; }
+        [TempData]
+        public string Message { get; set; }
         public DetailModel(IRestaurantData restaurantData)
         {
             this.restaurantData = restaurantData;
