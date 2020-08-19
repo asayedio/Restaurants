@@ -5,7 +5,7 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>@Model.Restaurant.Name</h1>
+<h2>@Model.Restaurant.Name</h2>
 <div>
     ID : @Model.Restaurant.ID
 </div>
@@ -15,4 +15,4 @@
 <div>
     Cusine : @Model.Restaurant.Cuisine
 </div>
-<a asp-page="./List" class="btn btn-default">All Restaurants </a>
+<a asp-page="./List" class="btn btn-danger">All Restaurants </a>

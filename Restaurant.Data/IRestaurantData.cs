@@ -10,6 +10,8 @@ namespace Restaurant.Data
         IEnumerable<RestaurantClass> GetAll();
         IEnumerable<RestaurantClass> GetRestaurantsByName(string name);
         RestaurantClass GetRestaurantById(int id);
+        RestaurantClass UpdateRestaurant(RestaurantClass updatedRestaurant);
+        int Commit();
     }
     public class InMomoryRestaurantData : IRestaurantData
     {
@@ -38,6 +40,21 @@ namespace Restaurant.Data
         public RestaurantClass GetRestaurantById(int id)
         {
             return restaurants.SingleOrDefault(r => r.ID == id);
+        }
+        public RestaurantClass UpdateRestaurant(RestaurantClass updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.ID == updatedRestaurant.ID);
+            if(restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+            return restaurant;
+        }
+        public int Commit()
+        {
+            return 0;
         }
     }
 }
