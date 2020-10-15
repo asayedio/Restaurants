@@ -12,6 +12,7 @@ namespace Restaurant.Data
         RestaurantClass GetRestaurantById(int id);
         RestaurantClass UpdateRestaurant(RestaurantClass updatedRestaurant);
         RestaurantClass AddRestaurant(RestaurantClass newRestaurant);
+        RestaurantClass DeleteRestaurant(int id);
         int Commit();
     }
     public class InMomoryRestaurantData : IRestaurantData
@@ -58,6 +59,15 @@ namespace Restaurant.Data
             newRestaurant.ID = restaurants.Max(r => r.ID) + 1;
             restaurants.Add(newRestaurant);
             return newRestaurant;
+        }
+        public RestaurantClass DeleteRestaurant(int id)
+        {
+            var restaurant = restaurants.FirstOrDefault(r => r.ID == id);
+            if(restaurant != null)
+            {
+                restaurants.Remove(restaurant);
+            }
+            return restaurant;
         }
         public int Commit()
         {
