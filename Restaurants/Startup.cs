@@ -26,7 +26,7 @@ namespace Restaurants
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //this method to access the local db in the app startup
+            //this method to access the local db in the app startup file
             services.AddDbContextPool<RestaurantsDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("RestaurantsDB"));
