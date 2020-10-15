@@ -33,7 +33,11 @@ namespace Restaurants
             });
 
             services.AddRazorPages();
-            services.AddSingleton<IRestaurantData, InMomoryRestaurantData>();
+            //to use Sql Data Source
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+
+            //to use InMomory Data Source **Singleton to allow only one http request at the same time as we use the same object on the memory
+            //services.AddSingleton<IRestaurantData, InMomoryRestaurantData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
