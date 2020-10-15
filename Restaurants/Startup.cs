@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Restaurant.Data;
 
 namespace Restaurants
@@ -24,6 +26,12 @@ namespace Restaurants
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //this method to access the local db in the app startup
+            services.AddDbContextPool<RestaurantsDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("RestaurantsDB"));
+            });
+
             services.AddRazorPages();
             services.AddSingleton<IRestaurantData, InMomoryRestaurantData>();
         }
