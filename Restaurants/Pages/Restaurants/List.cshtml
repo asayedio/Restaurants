@@ -41,8 +41,13 @@
                 @restaurant.Cuisine
             </td>
             <td>
-                <a class="btn btn-default" asp-page="./Detail" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-info"></i></a>
+                <a class="btn btn-default" asp-page="./Detail" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-info-circle"></i></a>
+            </td>
+            <td>
                 <a class="btn btn-default" asp-page="./Edit" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-edit"></i></a>
+            </td>
+            <td>
+                <a class="btn btn-default" asp-page="./Delete" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-trash-alt"></i></a>
             </td>
         </tr>
         }
