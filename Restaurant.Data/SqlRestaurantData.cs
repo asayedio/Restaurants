@@ -60,5 +60,10 @@ namespace Restaurant.Data
             entity.State = EntityState.Modified;
             return updatedRestaurant;
         }
+
+        int IRestaurantData.GetNumbersOfRestauran()
+        {
+            return db.Restaurants.Count();
+        }
     }
 }

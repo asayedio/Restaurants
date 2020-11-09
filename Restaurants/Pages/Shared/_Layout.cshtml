@@ -23,9 +23,6 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="Restaurants/List">Restaurants</a>
                         </li>
                     </ul>
@@ -33,17 +30,15 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="text-muted">
+            <vc:restaurants-count></vc:restaurants-count>
+            @* Or @await Component.InvokeAsync("RestaurantsCount")*@
+                &copy; @DateTime.Now.Year - asayedio
+        </footer>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Restaurants - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

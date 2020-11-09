@@ -62,5 +62,10 @@ namespace Restaurant.Data
         {
             return 0;
         }
+
+        public int GetNumbersOfRestauran()
+        {
+            return restaurants.Count;
+        }
     }
 }
