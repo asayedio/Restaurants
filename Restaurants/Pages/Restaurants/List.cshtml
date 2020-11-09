@@ -17,42 +17,17 @@
             </div>
         </div>
     </div>
-
 </form>
-<table class="table table-hover table-striped table-sm">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Cuisine</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var restaurant in Model.Restaurants)
-        {
-        <tr>
-            <td>
-                @restaurant.Name
-            </td>
-            <td>
-                @restaurant.Location
-            </td>
-            <td>
-                @restaurant.Cuisine
-            </td>
-            <td>
-                <a class="btn btn-default" asp-page="./Detail" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-info-circle"></i></a>
-            </td>
-            <td>
-                <a class="btn btn-default" asp-page="./Edit" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-edit"></i></a>
-            </td>
-            <td>
-                <a class="btn btn-default" asp-page="./Delete" asp-route-restaurantId="@restaurant.ID"><i class="fas fa-trash-alt"></i></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-<a asp-page="./Edit" class="btn btn-danger">Add New</a>
-@Model.Message
+@if (@TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+@foreach (var restaurant in Model.Restaurants)
+{
+    <partial name="_Restaurant" model="restaurant" />
+}
+
+<a asp-page="./Edit" class="btn btn-danger mt-3">Add New</a>
 
