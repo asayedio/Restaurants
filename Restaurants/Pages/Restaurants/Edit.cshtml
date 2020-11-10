@@ -23,5 +23,9 @@
         <select asp-for="@Model.Restaurant.Cuisine" class="form-control" asp-items="Model.Cuisines">
         </select>
     </div>
-    <button type="submit" class="btn btn-danger">Edit</button>
+    <button type="submit" class="btn btn-danger">Save</button>
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+ }

@@ -33,6 +33,7 @@ namespace Restaurants
             });
 
             services.AddRazorPages();
+            services.AddControllers();
             //to use Sql Data Source
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
 
@@ -64,6 +65,7 @@ namespace Restaurants
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
