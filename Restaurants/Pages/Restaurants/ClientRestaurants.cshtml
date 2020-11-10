@@ -5,9 +5,14 @@
 }
 
 <h1>Client Restaurants</h1>
+<table id="restaurants" class="table">
+
+</table>
 @section Scripts{
     <environment include="Development">
-
+        <script src="~/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="~/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+        <link href="~/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css" />
@@ -16,9 +21,21 @@
     </environment>
     <script>
         $(function myfunction() {
+            var cuisines = ["Unknown", "Mexican", "Italian","Egyptian"]
             $.ajax("/api/restaurants/",
                 { method: "get" })
                 .then(function (response) {
+                    $("#restaurants").dataTable({
+                        data: response,
+                        columns: [
+                            { "data": "name" },
+                            { "data": "location" },
+                            {
+                                "data": "cuisine", "render": function (data) {
+                                    return cuisines[data];
+                                }}
+                        ]
+                    });
                     console.dir(response);
                 });
         });
