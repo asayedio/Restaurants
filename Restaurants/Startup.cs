@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,6 +47,7 @@ namespace Restaurants
         {
             if (env.IsDevelopment())
             {
+                //use this middleware to show erorr details on development env
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -54,7 +56,7 @@ namespace Restaurants
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.Use(HelloMiddleware);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseNodeModules();
@@ -67,6 +69,17 @@ namespace Restaurants
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+        }
+
+        private RequestDelegate HelloMiddleware(RequestDelegate next)
+        {
+            return async ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/hello"))
+                    await ctx.Response.WriteAsync("Hello, World!");
+                else
+                    await next(ctx);
+            };
         }
     }
 }
